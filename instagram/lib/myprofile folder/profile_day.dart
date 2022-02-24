@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:instagram/day%20folder/hero.dart';
 import 'package:instagram/day%20folder/mydetails.dart';
 
+import 'profiledayhero.dart';
+
 class profileDay extends StatefulWidget {
   @override
   State<profileDay> createState() => _profileDayState();
@@ -26,32 +28,43 @@ class _profileDayState extends State<profileDay> {
               itemCount: profiledaylist.length,
               itemBuilder: (context, index) {
                 return InkWell(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              profiledayhero(profiledaylist[index]),
+                        ));
+                  },
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Stack(children: [
-                      CircleAvatar(
-                        backgroundColor: Colors.pink,
-                        radius: 35,
-                        child: CircleAvatar(
-                          backgroundColor: Colors.white,
-                          radius: 32,
+                    child: Hero(
+                      tag: Key(profiledaylist[index].name),
+                      child: Stack(children: [
+                        CircleAvatar(
+                          backgroundColor: Colors.pink,
+                          radius: 35,
                           child: CircleAvatar(
-                            radius: 30,
-                            backgroundImage:
-                                AssetImage(profiledaylist[index].img),
+                            backgroundColor: Colors.white,
+                            radius: 32,
+                            child: CircleAvatar(
+                              radius: 30,
+                              backgroundImage:
+                                  AssetImage(profiledaylist[index].img),
+                            ),
                           ),
                         ),
-                      ),
-                      Positioned(
-                          right: 20,
-                          bottom: 0,
-                          child: Text(
-                            profiledaylist[index].name,
-                            style: const TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold),
-                          ))
-                    ]),
+                        Positioned(
+                            right: 20,
+                            bottom: 0,
+                            child: Text(
+                              profiledaylist[index].name,
+                              style: const TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold),
+                            ))
+                      ]),
+                    ),
                   ),
                 );
               }),

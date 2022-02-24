@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'mygif.dart';
 import 'mygridview.dart';
 
 class mytoptabbar extends StatefulWidget {
@@ -21,7 +22,6 @@ class _mytoptabbarState extends State<mytoptabbar>
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -57,7 +57,7 @@ class _mytoptabbarState extends State<mytoptabbar>
             height: 205,
             child: TabBarView(
                 controller: _tabController,
-                children: [mygridview(), Text("hwllo"), Text("hwe")]),
+                children: [mygridview(), mygif(), Text("hwe")]),
           )
         ],
       ),

@@ -1,20 +1,27 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:instagram/day%20folder/myfavouritefuntions.dart';
 import 'package:instagram/login/signin%20folder/loginpage.dart';
 import 'package:instagram/day%20folder/my_days.dart';
 import 'package:instagram/login/signin%20folder/sign_in_page.dart';
 import 'package:instagram/myprofile%20folder/myprofile.dart';
+import 'package:provider/provider.dart';
+
+import 'addpicture/addpicture.dart';
+import 'mysearch folder/mysearch.dart';
 
 void main() {
-  runApp(MaterialApp(
-    initialRoute: "/",
-    routes: {
-      "/": (context) => Homepage(),
-      "/loginpage": (context) => logInPage(),
-      "/signinpage": (context) => signinPage(),
-    },
-    // home: Homepage(),
-    debugShowCheckedModeBanner: false,
+  runApp(MultiProvider(
+    providers: [ChangeNotifierProvider(create: (_) => myfavouritelist())],
+    child: MaterialApp(
+      initialRoute: "/",
+      routes: {
+        "/": (context) => Homepage(),
+        "/loginpage": (context) => logInPage(),
+        "/signinpage": (context) => signinPage(),
+      },
+      debugShowCheckedModeBanner: false,
+    ),
   ));
 }
 
@@ -29,8 +36,8 @@ class _HomepageState extends State<Homepage> {
   int mynavindex = 0;
   List mywidget = [
     mydays(),
-    const Center(child: Text("search")),
-    const Center(child: Text("add")),
+    mysearch(),
+    addpicture(),
     const Center(child: Text("shop")),
     myProfile(),
   ];

@@ -31,3 +31,9 @@ class gridviewlist {
     this.id,
   );
 }
+
+class videaandimage {
+  String img;
+  int id;
+  videaandimage(this.id, this.img);
+}

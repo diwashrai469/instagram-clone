@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:instagram/day%20folder/mydetails.dart';
+import 'package:instagram/day%20folder/myfavourite.dart';
+import 'package:instagram/day%20folder/myfavouritefuntions.dart';
+import 'package:provider/provider.dart';
 
 class newsfeedPage extends StatefulWidget {
   @override
@@ -8,8 +11,11 @@ class newsfeedPage extends StatefulWidget {
 }
 
 class _newsfeedPageState extends State<newsfeedPage> {
+  List<bool> iscomment = List.filled(myfeedlist.length, true);
+  final List<bool> isfavourite = List.filled(myfeedlist.length, true);
   final List<bool> _likes = List.filled(myfeedlist.length,
       true); //when onclick on one post only one is liked not other
+  bool addeditems = myfavouritelist.myfavlist.contains(myfeedlist);
 
   static List<newsfeeddetails> myfeedlist = [
     newsfeeddetails("picture/newsfeed/post/fot.jfif", "12745 likes",
@@ -71,7 +77,7 @@ class _newsfeedPageState extends State<newsfeedPage> {
                     },
                     child: Image(image: AssetImage(myfeedlist[index].img))),
                 Padding(
-                  padding: const EdgeInsets.all(10.0),
+                  padding: const EdgeInsets.fromLTRB(5.0, 5, 5, 0),
                   child: Row(
                     children: [
                       TextButton(
@@ -90,11 +96,24 @@ class _newsfeedPageState extends State<newsfeedPage> {
                                   size: 30,
                                   color: Colors.red,
                                 )),
-                      const Padding(
-                        padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                        child: Icon(
-                          CupertinoIcons.chat_bubble,
-                          size: 30,
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
+                        child: TextButton(
+                          onPressed: () {
+                            iscomment[index] = !iscomment[index];
+                            setState(() {});
+                          },
+                          child: iscomment[index]
+                              ? const Icon(
+                                  CupertinoIcons.chat_bubble,
+                                  size: 30,
+                                  color: Colors.black,
+                                )
+                              : const Icon(
+                                  CupertinoIcons.chat_bubble_fill,
+                                  size: 30,
+                                  color: Colors.black,
+                                ),
                         ),
                       ),
                       const Icon(
@@ -104,23 +123,73 @@ class _newsfeedPageState extends State<newsfeedPage> {
                       Expanded(
                         child: Row(
                             mainAxisAlignment: MainAxisAlignment.end,
-                            children: const [
-                              Icon(
-                                CupertinoIcons.bookmark,
-                                size: 30,
-                              ),
+                            children: [
+                              TextButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(const SnackBar(
+                                        content: Text("Added to favourite"),
+                                        duration:
+                                            Duration(seconds: 1), //display msg
+                                      ));
+
+                                      if (myfavouritelist.myfavlist
+                                          .contains(myfeedlist[index].img)) {
+                                        return null;
+                                      } else {
+                                        context
+                                            .read<myfavouritelist>()
+                                            .additem(myfeedlist[index].img);
+                                      }
+                                    });
+                                  },
+                                  child: myfavouritelist.myfavlist
+                                          .contains(myfeedlist[index].img)
+                                      ? const Icon(
+                                          CupertinoIcons.bookmark_fill,
+                                          size: 30,
+                                          color: Colors.black,
+                                        )
+                                      : const Icon(
+                                          CupertinoIcons.bookmark,
+                                          size: 30,
+                                        ))
                             ]),
                       )
                     ],
                   ),
                 ),
+                !iscomment[index]
+                    ? ListTile(
+                        leading: const CircleAvatar(
+                            radius: 20,
+                            backgroundImage:
+                                AssetImage("picture/days/luffy.jfif")),
+                        title: const TextField(
+                            decoration: InputDecoration(
+                                border: InputBorder.none,
+                                hintText: "Add a comment...")),
+                        trailing: TextButton(
+                            onPressed: () {}, child: const Text("Post")),
+                      )
+                    : const Text(""),
+                !iscomment[index]
+                    ? const SizedBox(
+                        height: 3,
+                      )
+                    : const SizedBox(
+                        height: 0,
+                      ),
                 Row(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.fromLTRB(10.0, 0, 0, 0),
+                      padding: const EdgeInsets.fromLTRB(25.0, 0, 0, 15),
                       child: Text(
                         myfeedlist[index].id.toString(),
-                        style: const TextStyle(fontWeight: FontWeight.bold),
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ],
