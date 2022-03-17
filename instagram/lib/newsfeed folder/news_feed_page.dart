@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:instagram/day%20folder/mydetails.dart';
 import 'package:instagram/day%20folder/myfavourite.dart';
-import 'package:instagram/day%20folder/myfavouritefuntions.dart';
+import 'package:instagram/day%20folder/myfavouritefuntionusingprovider.dart';
 import 'package:provider/provider.dart';
 
 class newsfeedPage extends StatefulWidget {
@@ -15,7 +15,6 @@ class _newsfeedPageState extends State<newsfeedPage> {
   final List<bool> isfavourite = List.filled(myfeedlist.length, true);
   final List<bool> _likes = List.filled(myfeedlist.length,
       true); //when onclick on one post only one is liked not other
-  bool addeditems = myfavouritelist.myfavlist.contains(myfeedlist);
 
   static List<newsfeeddetails> myfeedlist = [
     newsfeeddetails("picture/newsfeed/post/fot.jfif", "12745 likes",

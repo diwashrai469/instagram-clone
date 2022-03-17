@@ -1,18 +1,15 @@
-import 'dart:io';
-
+import 'package:badges/badges.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:instagram/day%20folder/hero.dart';
 import 'package:instagram/day%20folder/mydetails.dart';
+import 'package:instagram/day%20folder/myfavourite.dart';
 import 'package:instagram/newsfeed%20folder/news_feed_page.dart';
-import 'package:badges/badges.dart';
-import 'myfavourite.dart';
+import 'package:instagram/myprofile%20folder/profile_day.dart';
 import 'package:provider/provider.dart';
 
-import 'myfavouritefuntions.dart';
+import 'myfavouritefuntionusingprovider.dart';
 
 class mydays extends StatefulWidget {
   const mydays({Key? key}) : super(key: key);
@@ -29,21 +26,7 @@ class _mydaysState extends State<mydays> {
     mydetails("picture/days/3.jfif", 4, "stars"),
     mydetails("picture/days/2.jfif", 5, "Travel"),
   ];
-  File? profileimage; //for camera and gallery acess
-
-  Future pickImage(ImageSource source) async {
-    try {
-      final image = await ImagePicker.platform.pickImage(source: source);
-      if (image == null) return;
-      final myimage = File(image.path);
-      setState(() {
-        this.profileimage = myimage;
-      });
-    } on PlatformException catch (e) {
-      print("fail to pick image:$e");
-    }
-  }
-
+  @override
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -70,8 +53,11 @@ class _mydaysState extends State<mydays> {
           ),
           IconButton(
             onPressed: () {},
-            icon: const Icon(CupertinoIcons.paperplane, color: Colors.black),
-          ),
+            icon: const Icon(
+              CupertinoIcons.paperplane,
+              color: Colors.black,
+            ),
+          )
         ],
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -82,8 +68,8 @@ class _mydaysState extends State<mydays> {
               color: Colors.black,
             )),
       ),
-      body: SingleChildScrollView(
-        child: SafeArea(
+      body: SafeArea(
+        child: SingleChildScrollView(
           child: Column(
             children: [
               Container(
@@ -118,11 +104,7 @@ class _mydaysState extends State<mydays> {
                                   fixedSize: const Size(7, 7),
                                   shape: const CircleBorder(),
                                 ),
-                                onPressed: () {
-                                  setState(() {
-                                    pickImage(ImageSource.camera);
-                                  });
-                                },
+                                onPressed: () {},
                                 child: const Icon(Icons.add))),
                         const Positioned(
                             right: 25,
@@ -134,55 +116,59 @@ class _mydaysState extends State<mydays> {
                                   fontWeight: FontWeight.bold),
                             ))
                       ]),
-                      ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          shrinkWrap: true,
-                          itemCount: mylist.length,
-                          itemBuilder: (context, index) {
-                            return InkWell(
-                              onTap: () {
-                                setState(() {
-                                  Navigator.push(context,
-                                      MaterialPageRoute(builder: (_) {
-                                    return myheroAnimation(mylist[index]);
-                                  }));
-                                });
-                              },
-                              child: Hero(
-                                tag: Key(mylist[index].id.toString()),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Stack(children: [
-                                    CircleAvatar(
-                                      backgroundColor: Colors.pink,
-                                      radius: 45,
-                                      child: CircleAvatar(
-                                        backgroundColor: Colors.white,
-                                        radius: 43,
-                                        child: CircleAvatar(
-                                          radius: 40,
-                                          backgroundImage:
-                                              AssetImage(mylist[index].img),
+                      Row(
+                        children: [
+                          ListView.builder(
+                              scrollDirection: Axis.horizontal,
+                              shrinkWrap: true,
+                              itemCount: mylist.length,
+                              itemBuilder: (context, index) {
+                                return InkWell(
+                                  onTap: () {
+                                    setState(() {
+                                      Navigator.push(context,
+                                          MaterialPageRoute(builder: (_) {
+                                        return myheroAnimation(mylist[index]);
+                                      }));
+                                    });
+                                  },
+                                  child: Hero(
+                                    tag: Key(mylist[index].id.toString()),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Stack(children: [
+                                        CircleAvatar(
+                                          backgroundColor: Colors.pink,
+                                          radius: 45,
+                                          child: CircleAvatar(
+                                            backgroundColor: Colors.white,
+                                            radius: 43,
+                                            child: CircleAvatar(
+                                              radius: 40,
+                                              backgroundImage:
+                                                  AssetImage(mylist[index].img),
+                                            ),
+                                          ),
                                         ),
-                                      ),
+                                        Positioned(
+                                            right: 25,
+                                            bottom: 5,
+                                            child: Text(
+                                              mylist[index].name,
+                                              style: const TextStyle(
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.bold),
+                                            ))
+                                      ]),
                                     ),
-                                    Positioned(
-                                        right: 25,
-                                        bottom: 5,
-                                        child: Text(
-                                          mylist[index].name,
-                                          style: const TextStyle(
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.bold),
-                                        ))
-                                  ]),
-                                ),
-                              ),
-                            );
-                          }),
+                                  ),
+                                );
+                              }),
+                        ],
+                      ),
                     ]),
               ),
-              SingleChildScrollView(child: newsfeedPage()),
+              newsfeedPage(),
             ],
           ),
         ),

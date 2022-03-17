@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:instagram/day%20folder/myfavouritefuntions.dart';
+import 'package:instagram/day%20folder/myfavouritefuntionusingprovider.dart';
 import 'package:instagram/login/signin%20folder/loginpage.dart';
 import 'package:instagram/day%20folder/my_days.dart';
 import 'package:instagram/login/signin%20folder/sign_in_page.dart';

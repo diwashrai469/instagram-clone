@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:instagram/day%20folder/myfavouritefuntions.dart';
+import 'package:instagram/day%20folder/myfavouritefuntionusingprovider.dart';
 import 'package:provider/provider.dart';
 
 class myfavourite extends StatefulWidget {
