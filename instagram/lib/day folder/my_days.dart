@@ -31,6 +31,7 @@ class _mydaysState extends State<mydays> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         actions: [
           IconButton(
             onPressed: () {
@@ -83,13 +84,13 @@ class _mydaysState extends State<mydays> {
                         const Padding(
                           padding: EdgeInsets.all(12.0),
                           child: CircleAvatar(
-                            radius: 45,
+                            radius: 40,
                             backgroundColor: Colors.black,
                             child: CircleAvatar(
                               backgroundColor: Colors.white,
-                              radius: 43,
+                              radius: 37,
                               child: CircleAvatar(
-                                radius: 40,
+                                radius: 35,
                                 backgroundImage:
                                     AssetImage("picture/days/luffy.jfif"),
                               ),
@@ -101,14 +102,13 @@ class _mydaysState extends State<mydays> {
                             bottom: 20,
                             child: ElevatedButton(
                                 style: ElevatedButton.styleFrom(
-                                  fixedSize: const Size(7, 7),
                                   shape: const CircleBorder(),
                                 ),
                                 onPressed: () {},
                                 child: const Icon(Icons.add))),
                         const Positioned(
-                            right: 25,
-                            bottom: 5,
+                            right: 22,
+                            bottom: 8,
                             child: Text(
                               "Your Story",
                               style: TextStyle(
@@ -139,12 +139,12 @@ class _mydaysState extends State<mydays> {
                                       child: Stack(children: [
                                         CircleAvatar(
                                           backgroundColor: Colors.pink,
-                                          radius: 45,
+                                          radius: 40,
                                           child: CircleAvatar(
                                             backgroundColor: Colors.white,
-                                            radius: 43,
+                                            radius: 37,
                                             child: CircleAvatar(
-                                              radius: 40,
+                                              radius: 35,
                                               backgroundImage:
                                                   AssetImage(mylist[index].img),
                                             ),

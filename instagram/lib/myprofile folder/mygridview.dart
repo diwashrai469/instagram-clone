@@ -27,34 +27,36 @@ class _mygridviewState extends State<mygridview> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(0, 3, 0, 0),
-      child: GridView.builder(
-        itemCount: gridlist.length,
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 3, crossAxisSpacing: 3, mainAxisSpacing: 3),
-        itemBuilder: (BuildContext context, index) {
-          return Hero(
-            tag: Key(gridlist[index].id.toString()),
-            child: Material(
-              child: InkWell(
-                onTap: () {
-                  setState(() {
-                    Navigator.push(context, MaterialPageRoute(builder: (_) {
-                      return myprofilehero(gridlist[index]);
-                    }));
-                  });
-                },
-                child: Container(
-                  alignment: Alignment.center,
-                  width: 40,
-                  decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage(gridlist[index].img),
-                          fit: BoxFit.cover)),
+      child: Expanded(
+        child: GridView.builder(
+          itemCount: gridlist.length,
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 3, crossAxisSpacing: 3, mainAxisSpacing: 3),
+          itemBuilder: (BuildContext context, index) {
+            return Hero(
+              tag: Key(gridlist[index].id.toString()),
+              child: Material(
+                child: InkWell(
+                  onTap: () {
+                    setState(() {
+                      Navigator.push(context, MaterialPageRoute(builder: (_) {
+                        return myprofilehero(gridlist[index]);
+                      }));
+                    });
+                  },
+                  child: Container(
+                    alignment: Alignment.center,
+                    width: 40,
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: AssetImage(gridlist[index].img),
+                            fit: BoxFit.cover)),
+                  ),
                 ),
               ),
-            ),
-          );
-        },
+            );
+          },
+        ),
       ),
     );
   }

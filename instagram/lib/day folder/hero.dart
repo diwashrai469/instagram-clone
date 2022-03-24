@@ -12,15 +12,15 @@ class myheroAnimation extends StatelessWidget {
         backgroundColor: Colors.black,
         body: ListView(children: [
           Container(
-            height: 685,
+            height: 600,
             width: 505,
             child: Hero(
-              tag: Key(address.img),
+              tag: Key(address.id.toString()),
               child: Image(image: AssetImage(address.img), fit: BoxFit.contain),
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(10.0),
+            padding: const EdgeInsets.all(20.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -28,9 +28,9 @@ class myheroAnimation extends StatelessWidget {
                   flex: 3,
                   child: TextFormField(
                     cursorColor: Colors.white,
-                    style: TextStyle(color: Colors.white, fontSize: 18),
+                    style: TextStyle(color: Colors.white, fontSize: 15),
                     decoration: InputDecoration(
-                        contentPadding: EdgeInsets.fromLTRB(20, 8, 5, 8),
+                        contentPadding: EdgeInsets.fromLTRB(30, 0, 10, 10),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                               width: 2, color: Colors.blueGrey.shade200),
@@ -51,7 +51,7 @@ class myheroAnimation extends StatelessWidget {
                     child: Icon(
                       CupertinoIcons.paperplane,
                       color: Colors.white,
-                      size: 30,
+                      size: 25,
                     ))
               ],
             ),

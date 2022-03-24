@@ -44,6 +44,7 @@ class _newsfeedPageState extends State<newsfeedPage> {
             return Column(
               children: [
                 ListTile(
+                  contentPadding: EdgeInsets.zero,
                   title: Text(
                     myfeedlist[index].name,
                     style: const TextStyle(fontWeight: FontWeight.bold),

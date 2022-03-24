@@ -108,10 +108,6 @@ class _myProfileState extends State<myProfile> {
                   "MonkeyD.Luffy",
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
-                MaterialButton(
-                    padding: EdgeInsets.zero,
-                    onPressed: () {},
-                    child: const Icon(Icons.arrow_drop_down_circle_outlined))
               ],
             ),
             trailing: FittedBox(
@@ -143,28 +139,28 @@ class _myProfileState extends State<myProfile> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(15, 0, 15, 10),
+                    padding: const EdgeInsets.fromLTRB(10, 0, 15, 10),
                     child: Container(
-                      height: 200,
+                      height: 130,
                       width: 150,
                       child: Stack(children: const [
                         CircleAvatar(
-                            radius: 60,
+                            radius: 40,
                             backgroundImage:
                                 AssetImage("picture/days/luffy.jfif")),
                         Positioned(
-                            bottom: 10,
-                            right: 0,
+                            bottom: -3,
+                            right: 7,
                             child: Text(
                               "MonkeyD.luffy,\nTV show,\n.One Piece Visuals, ",
                               style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 16),
+                                  fontWeight: FontWeight.bold, fontSize: 15),
                             ))
                       ]),
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(8.0, 35, 8, 0),
+                    padding: const EdgeInsets.fromLTRB(5, 35, 12, 0),
                     child: Column(
                       children: const [
                         Text(
@@ -174,13 +170,13 @@ class _myProfileState extends State<myProfile> {
                         ),
                         Text(
                           "post",
-                          style: TextStyle(fontSize: 15),
+                          style: TextStyle(fontSize: 10),
                         ),
                       ],
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(8.0, 35, 8, 0),
+                    padding: const EdgeInsets.fromLTRB(12, 35, 12, 0),
                     child: Column(
                       children: const [
                         Text(
@@ -190,13 +186,13 @@ class _myProfileState extends State<myProfile> {
                         ),
                         Text(
                           "Followers",
-                          style: TextStyle(fontSize: 15),
+                          style: TextStyle(fontSize: 10),
                         ),
                       ],
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(8.0, 35, 8, 0),
+                    padding: const EdgeInsets.fromLTRB(12, 35, 12, 0),
                     child: Column(
                       children: const [
                         Text(
@@ -206,7 +202,7 @@ class _myProfileState extends State<myProfile> {
                         ),
                         Text(
                           "Following",
-                          style: TextStyle(fontSize: 15),
+                          style: TextStyle(fontSize: 10),
                         ),
                       ],
                     ),

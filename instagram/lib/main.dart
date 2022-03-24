@@ -55,7 +55,7 @@ class _HomepageState extends State<Homepage> {
         resizeToAvoidBottomInset: true,
         bottomNavigationBar: BottomNavigationBar(
             selectedFontSize: 0,
-            iconSize: 35,
+            iconSize: 30,
             elevation: 0,
             currentIndex: mynavindex,
             onTap: onitemtap,
@@ -93,21 +93,21 @@ class _HomepageState extends State<Homepage> {
               ),
               BottomNavigationBarItem(
                 activeIcon: CircleAvatar(
-                  radius: 20,
+                  radius: 18,
                   backgroundColor: Colors.black,
                   child: CircleAvatar(
-                    radius: 18,
+                    radius: 15,
                     backgroundImage: AssetImage("picture/days/luffy.jfif"),
                   ),
                 ),
                 icon: CircleAvatar(
-                  radius: 20,
+                  radius: 18,
                   backgroundColor: Colors.black,
                   child: CircleAvatar(
                     backgroundColor: Colors.white,
-                    radius: 43,
+                    radius: 15,
                     child: CircleAvatar(
-                      radius: 40,
+                      radius: 20,
                       backgroundImage: AssetImage("picture/days/luffy.jfif"),
                     ),
                   ),
